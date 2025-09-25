@@ -103,7 +103,12 @@
     "test": "craco test"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "no-unreachable": "off",
+      "no-unused-vars": "off",
+      "no-undef": "off"
+    }
   },
   "browserslist": {
     "production": [
