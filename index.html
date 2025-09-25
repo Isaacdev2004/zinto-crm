@@ -8,123 +8,471 @@
     <meta name="description" content="Zinto - Multi-Agent WhatsApp CRM Platform" />
     <title>Zinto CRM</title>
     <style>
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            background: linear-gradient(135deg, #4F46E5 0%, #3730A3 100%);
+            background: #f5f5f5;
+        }
+        
+        .app {
             min-height: 100vh;
+            display: flex;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background: #4F46E5;
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .nav-item {
+            padding: 0.75rem;
+            margin: 0.25rem 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .main-content {
+            margin-left: 250px;
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        .header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+        
+        .login-container {
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #4F46E5 0%, #3730A3 100%);
         }
-        .container {
+        
+        .login-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-title {
             text-align: center;
-            color: white;
-            max-width: 800px;
-            padding: 2rem;
-        }
-        .logo {
-            font-size: 4rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-        .subtitle {
-            font-size: 1.5rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
+            color: #4F46E5;
+            font-size: 1.5rem;
         }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
+        
+        .form-group {
+            margin-bottom: 1rem;
         }
-        .feature {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease;
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
         }
-        .feature:hover {
-            transform: translateY(-5px);
-        }
-        .status {
-            background: rgba(34, 197, 94, 0.2);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 3rem 0;
-        }
-        .cta-button {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 1rem 2rem;
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
             border-radius: 8px;
-            text-decoration: none;
-            display: inline-block;
-            margin: 1rem;
-            transition: all 0.3s ease;
-            font-weight: bold;
+            font-size: 1rem;
         }
-        .cta-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+        
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: #4F46E5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #3730A3;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .card h3 {
+            margin-bottom: 1rem;
+            color: #4F46E5;
+        }
+        
+        .chat-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            background: #4F46E5;
+            color: white;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            max-width: 70%;
+        }
+        
+        .message.sent {
+            background: #4F46E5;
+            color: white;
+            margin-left: auto;
+        }
+        
+        .message.received {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .chat-input {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .chat-input button {
+            padding: 0.75rem 1.5rem;
+            background: #4F46E5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">Zinto</div>
-        <div class="subtitle">Multi-Agent WhatsApp CRM Platform</div>
-        
-        <div class="status">
-            <h3>🚀 Application Successfully Deployed!</h3>
-            <p>Your Zinto CRM platform is now live and ready to use.</p>
-            <p>All features are working and the system is fully operational.</p>
-        </div>
-        
-        <div class="features">
-            <div class="feature">
-                <h4>🤖 Multi-Agent Support</h4>
-                <p>Advanced AI-powered customer service with intelligent routing and automation</p>
-            </div>
-            <div class="feature">
-                <h4>📱 WhatsApp Integration</h4>
-                <p>Seamless messaging, automation, and customer engagement</p>
-            </div>
-            <div class="feature">
-                <h4>📊 Analytics Dashboard</h4>
-                <p>Real-time insights, reporting, and performance metrics</p>
-            </div>
-            <div class="feature">
-                <h4>🎯 Campaign Management</h4>
-                <p>Targeted marketing campaigns and customer segmentation</p>
-            </div>
-            <div class="feature">
-                <h4>💬 Live Chat Support</h4>
-                <p>Real-time customer support with ticket management</p>
-            </div>
-            <div class="feature">
-                <h4>🔧 Custom Integrations</h4>
-                <p>Connect with your existing tools and workflows</p>
+    <div id="root">
+        <!-- Login Page -->
+        <div id="loginPage" class="login-container">
+            <div class="login-form">
+                <h2 class="login-title">Zinto CRM</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                </form>
             </div>
         </div>
-        
-        <div>
-            <a href="/api/health" class="cta-button">Check API Status</a>
-            <a href="mailto:support@zinto.com" class="cta-button">Contact Support</a>
+
+        <!-- Main App -->
+        <div id="mainApp" class="app hidden">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="logo">Zinto</div>
+                <div class="nav-item active" data-page="dashboard">📊 Dashboard</div>
+                <div class="nav-item" data-page="chat">💬 WhatsApp Chat</div>
+                <div class="nav-item" data-page="contacts">👥 Contacts</div>
+                <div class="nav-item" data-page="campaigns">📢 Campaigns</div>
+                <div class="nav-item" data-page="analytics">📈 Analytics</div>
+                <div class="nav-item" data-page="settings">⚙️ Settings</div>
+                <div class="nav-item" data-page="pricing">💳 Pricing</div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Dashboard -->
+                <div id="dashboard" class="page">
+                    <div class="header">
+                        <h1>Dashboard</h1>
+                        <p>Welcome to your Zinto CRM dashboard</p>
+                    </div>
+                    <div class="dashboard-grid">
+                        <div class="card">
+                            <h3>📊 Total Conversations</h3>
+                            <p style="font-size: 2rem; color: #4F46E5; margin: 1rem 0;">1,247</p>
+                            <p>+12% from last month</p>
+                        </div>
+                        <div class="card">
+                            <h3>👥 Active Contacts</h3>
+                            <p style="font-size: 2rem; color: #4F46E5; margin: 1rem 0;">3,891</p>
+                            <p>+8% from last month</p>
+                        </div>
+                        <div class="card">
+                            <h3>📱 WhatsApp Connections</h3>
+                            <p style="font-size: 2rem; color: #4F46E5; margin: 1rem 0;">5</p>
+                            <p>All connected</p>
+                        </div>
+                        <div class="card">
+                            <h3>🎯 Campaign Performance</h3>
+                            <p style="font-size: 2rem; color: #4F46E5; margin: 1rem 0;">94%</p>
+                            <p>Delivery rate</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat -->
+                <div id="chat" class="page hidden">
+                    <div class="header">
+                        <h1>WhatsApp Chat</h1>
+                        <p>Manage your WhatsApp conversations</p>
+                    </div>
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <h3>Customer Support Chat</h3>
+                            <p>Online • Last seen 2 minutes ago</p>
+                        </div>
+                        <div class="chat-messages">
+                            <div class="message received">
+                                <strong>Customer:</strong> Hi, I need help with my order
+                            </div>
+                            <div class="message sent">
+                                <strong>You:</strong> Hello! I'd be happy to help you with your order. Can you please provide your order number?
+                            </div>
+                            <div class="message received">
+                                <strong>Customer:</strong> Sure, it's #12345
+                            </div>
+                            <div class="message sent">
+                                <strong>You:</strong> Thank you! I can see your order is being processed and will be shipped within 24 hours.
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" placeholder="Type your message..." id="messageInput">
+                            <button onclick="sendMessage()">Send</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contacts -->
+                <div id="contacts" class="page hidden">
+                    <div class="header">
+                        <h1>Contacts</h1>
+                        <p>Manage your customer contacts</p>
+                    </div>
+                    <div class="card">
+                        <h3>Contact List</h3>
+                        <p>Here you can view and manage all your customer contacts, add tags, and organize them into groups.</p>
+                    </div>
+                </div>
+
+                <!-- Campaigns -->
+                <div id="campaigns" class="page hidden">
+                    <div class="header">
+                        <h1>Campaigns</h1>
+                        <p>Create and manage marketing campaigns</p>
+                    </div>
+                    <div class="card">
+                        <h3>Active Campaigns</h3>
+                        <p>Create targeted WhatsApp campaigns, schedule messages, and track performance metrics.</p>
+                    </div>
+                </div>
+
+                <!-- Analytics -->
+                <div id="analytics" class="page hidden">
+                    <div class="header">
+                        <h1>Analytics</h1>
+                        <p>View detailed performance metrics</p>
+                    </div>
+                    <div class="card">
+                        <h3>Performance Overview</h3>
+                        <p>Track message delivery rates, response times, customer satisfaction, and conversion metrics.</p>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div id="settings" class="page hidden">
+                    <div class="header">
+                        <h1>Settings</h1>
+                        <p>Configure your Zinto CRM settings</p>
+                    </div>
+                    <div class="card">
+                        <h3>Account Settings</h3>
+                        <p>Manage your account preferences, integrations, and system configurations.</p>
+                    </div>
+                </div>
+
+                <!-- Pricing -->
+                <div id="pricing" class="page hidden">
+                    <div class="header">
+                        <h1>Pricing Plans</h1>
+                        <p>Choose the perfect plan for your business</p>
+                    </div>
+                    <div class="dashboard-grid">
+                        <div class="card">
+                            <h3>Starter Plan</h3>
+                            <p style="font-size: 2rem; color: #4F46E5; margin: 1rem 0;">$29/month</p>
+                            <ul>
+                                <li>1 WhatsApp connection</li>
+                                <li>1,000 messages/month</li>
+                                <li>Basic analytics</li>
+                            </ul>
+                            <button class="btn" style="margin-top: 1rem;">Choose Plan</button>
+                        </div>
+                        <div class="card">
+                            <h3>Professional Plan</h3>
+                            <p style="font-size: 2rem; color: #4F46E5; margin: 1rem 0;">$79/month</p>
+                            <ul>
+                                <li>5 WhatsApp connections</li>
+                                <li>10,000 messages/month</li>
+                                <li>Advanced analytics</li>
+                                <li>Campaign management</li>
+                            </ul>
+                            <button class="btn" style="margin-top: 1rem;">Choose Plan</button>
+                        </div>
+                        <div class="card">
+                            <h3>Enterprise Plan</h3>
+                            <p style="font-size: 2rem; color: #4F46E5; margin: 1rem 0;">$199/month</p>
+                            <ul>
+                                <li>Unlimited connections</li>
+                                <li>Unlimited messages</li>
+                                <li>Full analytics suite</li>
+                                <li>Priority support</li>
+                            </ul>
+                            <button class="btn" style="margin-top: 1rem;">Choose Plan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <p style="margin-top: 3rem; opacity: 0.8;">
-            Built with React, Node.js, and modern web technologies<br>
-            © 2024 Zinto CRM Platform
-        </p>
     </div>
+
+    <script>
+        // Login functionality
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation
+            if (email && password) {
+                document.getElementById('loginPage').classList.add('hidden');
+                document.getElementById('mainApp').classList.remove('hidden');
+            }
+        });
+
+        // Navigation functionality
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all nav items
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Hide all pages
+                document.querySelectorAll('.page').forEach(page => page.classList.add('hidden'));
+                
+                // Show selected page
+                const pageId = this.getAttribute('data-page');
+                document.getElementById(pageId).classList.remove('hidden');
+            });
+        });
+
+        // Chat functionality
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                const messagesContainer = document.querySelector('.chat-messages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message sent';
+                messageDiv.innerHTML = `<strong>You:</strong> ${message}`;
+                messagesContainer.appendChild(messageDiv);
+                
+                input.value = '';
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                // Simulate response
+                setTimeout(() => {
+                    const responseDiv = document.createElement('div');
+                    responseDiv.className = 'message received';
+                    responseDiv.innerHTML = '<strong>Customer:</strong> Thank you for your help!';
+                    messagesContainer.appendChild(responseDiv);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        // Enter key for chat
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
 </body>
 </html>
