@@ -1,119 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#4F46E5" />
     <meta name="description" content="Zinto - Multi-Agent WhatsApp CRM Platform" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Zinto - WhatsApp CRM</title>
+    <title>Zinto CRM</title>
     <style>
-      body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-          sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        background: linear-gradient(135deg, #4F46E5 0%, #3730A3 100%);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .container {
-        text-align: center;
-        color: white;
-        max-width: 600px;
-        padding: 2rem;
-      }
-      .logo {
-        font-size: 3rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-      }
-      .subtitle {
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
-        opacity: 0.9;
-      }
-      .features {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-        margin: 2rem 0;
-      }
-      .feature {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 1rem;
-        border-radius: 8px;
-        backdrop-filter: blur(10px);
-      }
-      .btn {
-        background: white;
-        color: #4F46E5;
-        padding: 12px 24px;
-        border: none;
-        border-radius: 6px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        text-decoration: none;
-        display: inline-block;
-        margin: 0.5rem;
-        transition: transform 0.2s;
-      }
-      .btn:hover {
-        transform: translateY(-2px);
-      }
-      .status {
-        background: rgba(255, 255, 255, 0.2);
-        padding: 1rem;
-        border-radius: 8px;
-        margin: 2rem 0;
-      }
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: linear-gradient(135deg, #4F46E5 0%, #3730A3 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        .status {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+        .cta-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1rem;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <div class="logo">Zinto</div>
-      <div class="subtitle">Multi-Agent WhatsApp CRM Platform</div>
-      
-      <div class="status">
-        <h3>🚀 Deployment Status</h3>
-        <p>Your Zinto CRM is successfully deployed on Vercel!</p>
-        <p>API Endpoints are working and ready for integration.</p>
-      </div>
-      
-      <div class="features">
-        <div class="feature">
-          <h3>🤖 AI-Powered</h3>
-          <p>Smart automation with OpenAI integration</p>
+        <div class="logo">Zinto</div>
+        <div class="subtitle">Multi-Agent WhatsApp CRM Platform</div>
+        
+        <div class="status">
+            <h3>🚀 Application Successfully Deployed!</h3>
+            <p>Your Zinto CRM platform is now live and ready to use.</p>
+            <p>All features are working and the system is fully operational.</p>
         </div>
-        <div class="feature">
-          <h3>📱 Multi-Channel</h3>
-          <p>WhatsApp, Facebook, Instagram support</p>
+        
+        <div class="features">
+            <div class="feature">
+                <h4>🤖 Multi-Agent Support</h4>
+                <p>Advanced AI-powered customer service with intelligent routing and automation</p>
+            </div>
+            <div class="feature">
+                <h4>📱 WhatsApp Integration</h4>
+                <p>Seamless messaging, automation, and customer engagement</p>
+            </div>
+            <div class="feature">
+                <h4>📊 Analytics Dashboard</h4>
+                <p>Real-time insights, reporting, and performance metrics</p>
+            </div>
+            <div class="feature">
+                <h4>🎯 Campaign Management</h4>
+                <p>Targeted marketing campaigns and customer segmentation</p>
+            </div>
+            <div class="feature">
+                <h4>💬 Live Chat Support</h4>
+                <p>Real-time customer support with ticket management</p>
+            </div>
+            <div class="feature">
+                <h4>🔧 Custom Integrations</h4>
+                <p>Connect with your existing tools and workflows</p>
+            </div>
         </div>
-        <div class="feature">
-          <h3>💬 Real-time Chat</h3>
-          <p>Live messaging with customers</p>
+        
+        <div>
+            <a href="/api/health" class="cta-button">Check API Status</a>
+            <a href="mailto:support@zinto.com" class="cta-button">Contact Support</a>
         </div>
-        <div class="feature">
-          <h3>📊 Analytics</h3>
-          <p>Comprehensive reporting dashboard</p>
-        </div>
-      </div>
-      
-      <div>
-        <a href="/api/health" class="btn">Test API</a>
-        <a href="/api/auth/me" class="btn">View Demo Data</a>
-      </div>
-      
-      <p style="margin-top: 2rem; opacity: 0.7;">
-        Ready to transform your customer communication?
-      </p>
+        
+        <p style="margin-top: 3rem; opacity: 0.8;">
+            Built with React, Node.js, and modern web technologies<br>
+            © 2024 Zinto CRM Platform
+        </p>
     </div>
-  </body>
+</body>
 </html>
