@@ -1,0 +1,10 @@
+{
+  "name": "zinto-api",
+  "version": "1.0.0",
+  "description": "Zinto API for Vercel deployment",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}

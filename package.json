@@ -1,0 +1,12 @@
+{
+  "name": "zinto-saas",
+  "version": "1.0.0",
+  "description": "Zinto Multi-Agent WhatsApp CRM Platform",
+  "scripts": {
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && node quick-backend.js"
+  },
+  "keywords": ["zinto", "whatsapp", "crm", "saas"],
+  "author": "Zinto Team",
+  "license": "MIT"
+}
