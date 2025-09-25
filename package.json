@@ -2,6 +2,9 @@
   "name": "zinto-saas",
   "version": "1.0.0",
   "description": "Zinto Multi-Agent WhatsApp CRM Platform",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "build": "echo 'Build complete'",
     "start": "node api/index.js"
