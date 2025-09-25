@@ -99,7 +99,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "set NODE_OPTIONS=--max-old-space-size=6144 && set DISABLE_ESLINT_PLUGIN=true && craco build",
+    "build": "craco build",
     "test": "craco test"
   },
   "eslintConfig": {
