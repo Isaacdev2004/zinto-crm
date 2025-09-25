@@ -6,7 +6,7 @@
     "node": "22.x"
   },
   "scripts": {
-    "build": "cd frontend && npm install --legacy-peer-deps && node ../build-script.js",
+    "build": "node simple-build.js",
     "start": "node api/index.js"
   },
   "keywords": ["zinto", "whatsapp", "crm", "saas"],
